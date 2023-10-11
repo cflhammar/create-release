@@ -6,7 +6,6 @@ on: workflow_dispatch
 
 jobs:
   create-release:
-    permissions: write-all
     name: 'Create Release'
     runs-on: 'ubuntu-latest'
     if: github.ref == 'refs/heads/main'
@@ -20,4 +19,4 @@ jobs:
           gh release create "${{ env.NOW }}" \
               --repo="$GITHUB_REPOSITORY" \
               --title="${{ env.NOW }}" \
-              --generate-notes
+              --notes "this is the notes"
