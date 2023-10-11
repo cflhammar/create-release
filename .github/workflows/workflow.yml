@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create tag
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  create-release:
+    permissions: write-all
+    name: 'Create Release'
+    runs-on: 'ubuntu-latest'
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: set date env
+        run: echo "NOW=$(date +'v%Y.%m.%d%H%M%S')" >> $GITHUB_ENV
+      - name: Create release notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ env.NOW }}" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${{ env.NOW }}" \
+              --generate-notes
