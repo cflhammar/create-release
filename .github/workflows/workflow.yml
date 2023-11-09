@@ -28,4 +28,4 @@ jobs:
           gh release create "${{ env.NOW }}" \
               --repo="$GITHUB_REPOSITORY" \
               --title="${{ env.NOW }}" \
-              --target= ${{ inputs.commit }}
+              --target= "${{ inputs.commit }}"
