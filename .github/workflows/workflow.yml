@@ -18,6 +18,8 @@ on:
 
 jobs:
   create-release:
+    with:
+      environment: 'prod'
     permissions: write-all
     name: 'Create Release'
     runs-on: 'ubuntu-latest'
