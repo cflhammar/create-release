@@ -24,6 +24,8 @@ jobs:
       - name: Create release notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEST: ${{ GITHUB_SHA }}
+          TEST2: "$GITHUB_SHA"
         run: |
           gh release create "${{ env.NOW }}" \
               --repo="$GITHUB_REPOSITORY" \
