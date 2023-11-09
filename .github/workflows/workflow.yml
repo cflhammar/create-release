@@ -2,7 +2,15 @@
 
 name: Create tag, release & release notes
 
-on: workflow_dispatch
+on:   
+  workflow_dispatch:
+    inputs:
+      commit:
+        default: ''
+        type: string
+        required: false
+        description: The short sha (8 first characters) of the commit to deploy, leave empty to deploy the latest commit.
+
 
 jobs:
   create-release:
@@ -20,4 +28,4 @@ jobs:
           gh release create "${{ env.NOW }}" \
               --repo="$GITHUB_REPOSITORY" \
               --title="${{ env.NOW }}" \
-              --generate-notes
+              --target= ${{ inputs.commit }}
