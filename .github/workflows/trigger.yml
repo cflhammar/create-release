@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create tag, release & release notes
+
+on:   
+  workflow_dispatch:
+    inputs:
+      commit:
+        default: ''
+        type: string
+        required: false
+        description: The short sha (8 first characters) of the commit to deploy, leave empty to deploy the latest commit.
+
+
+jobs:
+  trigger:
+    name: 'Trigger'
+    runs-on: 'ubuntu-latest'
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: trigger
+        run: echo "lasse"

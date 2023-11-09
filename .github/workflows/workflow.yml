@@ -3,6 +3,10 @@
 name: Create tag, release & release notes
 
 on:   
+  workflow_run:
+    workflows: [Trigger]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       commit:
